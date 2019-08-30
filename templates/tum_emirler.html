@@ -57,18 +57,18 @@
                     </tr>
                   </thead>
     <tbody>
-        {% for todo in todos %}
+        {% for order in orders %}
         <tr>
-          <th scope="row">{{todo.NUMARA +1}}</th>
-          <td><a href="/detay/{{todo.ORDER_NUMBER}}">{{todo.ORDER_NUMBER}}</a></td>
-          <td>{{todo.TIME}}</td>
-          <td>{{todo.STATUS}}</td>
-          <td>{{todo.PRICE}}</td>
-          <td>{{todo.KAZANC_ORANI}}</td>
-          <td>{{todo.MARKET}}</td>
-          <td>{{todo.AMOUNT}}</td>
-          <td><a href="/complate/{{todo.ORDER_NUMBER}}" class="btn btn-danger">Tamamla</a></td>
-          <td><a href="/sil/{{todo.ORDER_NUMBER}}" class="btn btn-danger">Sil</a></td>
+          <th scope="row">{{order.NUMARA +1}}</th>
+          <td><a href="/detay/{{order.ORDER_NUMBER}}">{{order.ORDER_NUMBER}}</a></td>
+          <td>{{order.TIME}}</td>
+          <td>{{order.STATUS}}</td>
+          <td>{{order.PRICE}}</td>
+          <td>{{order.KAZANC_ORANI}}</td>
+          <td>{{order.MARKET}}</td>
+          <td>{{order.AMOUNT}}</td>
+          <td><a href="/complate/{{order.ORDER_NUMBER}}" class="btn btn-danger">Tamamla</a></td>
+          <td><a href="/sil/{{order.ORDER_NUMBER}}" class="btn btn-danger">Sil</a></td>
         </tr>
         {% endfor %}
       </tbody>

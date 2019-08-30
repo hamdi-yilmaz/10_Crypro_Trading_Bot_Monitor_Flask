@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Todo App</title>
+    <title>order App</title>
     
 </head>
 <body>
@@ -34,24 +34,24 @@
     </div>
 </div>
     <div style ="margin-top: 100px" class="container">
-        <h3>Todo list</h3>
+        <h3>order list</h3>
         <hr>
 
         <form action="/add" method="post">
             
                 <div class="form-group">
-                  <label for="formGroupExampleInput">Todo Başlığı</label>
+                  <label for="formGroupExampleInput">order Başlığı</label>
                   <input type="text" name ="title" class="form-control" id="formGroupExampleInput" placeholder="Başlığı giriniz">
                 </div>
                 <div class="form-group">
-                  <label for="formGroupExampleInput2">Todo İçeriği</label>
+                  <label for="formGroupExampleInput2">order İçeriği</label>
                   <textarea type="text" name="content" class="form-control" id="formGroupExampleInput2" placeholder="İçeriği giriniz"></textarea>
                 </div>
                 <button type="submit" class="btn btn-success">Ekle</button>
         </form><br>
 
 
-        {% if todos == []  %}
+        {% if orders == []  %}
         <div class="alert alert-primary" role="alert">
           Veri yok
         </div>
@@ -72,15 +72,15 @@
             </tr>
           </thead>
           <tbody>
-            {% for todo in todos %}
+            {% for order in orders %}
             <tr>
-              <th scope="row">{{todo.NUMBER}}</th>
-              <td><a href="/detay/{{todo.NUMBER}}">{{todo.MARKET}}</a></td>
-              <td>{{todo.STATUS}}</td>
-              <td>{{todo.BUY_PRICE}}</td>
-              <td>{{todo.SELL_PRICE}}</td>
-              <td><a href="/complate/{{todo.NUMBER}}" class="btn btn-danger">Tamamla</a></td>
-              <td><a href="/sil/{{todo.NUMBER}}" class="btn btn-danger">Sil</a></td>
+              <th scope="row">{{order.NUMBER}}</th>
+              <td><a href="/detay/{{order.NUMBER}}">{{order.MARKET}}</a></td>
+              <td>{{order.STATUS}}</td>
+              <td>{{order.BUY_PRICE}}</td>
+              <td>{{order.SELL_PRICE}}</td>
+              <td><a href="/complate/{{order.NUMBER}}" class="btn btn-danger">Tamamla</a></td>
+              <td><a href="/sil/{{order.NUMBER}}" class="btn btn-danger">Sil</a></td>
             </tr>
             {% endfor %}
           </tbody>

@@ -18,7 +18,7 @@
     
 
 
-{% for group in todos|groupby('BORSA') %}
+{% for group in orders|groupby('BORSA') %}
 <section id="{{ group.grouper }}" class="group">
         <h3>{{ group.grouper }}</h3>
     
@@ -50,7 +50,7 @@
 
 
 <ul>
-        {% for group in todos|groupby('BORSA') %}
+        {% for group in orders|groupby('BORSA') %}
             <li>{{ group.grouper }}<ul>
       
             {% for altgroup in group.list|groupby('MARKET') %}

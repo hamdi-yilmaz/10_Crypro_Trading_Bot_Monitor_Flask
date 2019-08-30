@@ -11,12 +11,12 @@ db.Model.metadata.reflect(db.engine)
 @app.route("/")
 def index():
     
-    todos =  Todo.query.all()
+    orders =  order.query.all()
     
     
 
-    # Todo.query.group_by(Todo.MARKET).all()                   # veriyi gruplamak icin
-    # Todo.query.all()[1].BORSA                                # birinci verinin Borsa sutunu verisi
+    # order.query.group_by(order.MARKET).all()                   # veriyi gruplamak icin
+    # order.query.all()[1].BORSA                                # birinci verinin Borsa sutunu verisi
 
     """ liste icinde sozluk yapisinda doner
     [
@@ -24,43 +24,43 @@ def index():
     ]
     """
 
-    return render_template("index.html",todos = todos)
+    return render_template("index.html",orders = orders)
 
 @app.route("/deneme")
 def deneme():
     
-    todos =  Todo.query.all()
+    orders =  order.query.all()
 
    
-    borsa_grup = Todo.query.group_by(Todo.BORSA).all()
+    borsa_grup = order.query.group_by(order.BORSA).all()
     borsalar =[]
     for borsa in borsa_grup:
         borsalar.append(borsa.BORSA)
     
-    market_grup = Todo.query.group_by(Todo.MARKET).all()
+    market_grup = order.query.group_by(order.MARKET).all()
     marketler = []
     for market in market_grup:
         marketler.append(market.MARKET)
 
         
     
-    return render_template("deneme.html",todos = todos,borsalar = borsalar, marketler = marketler)
+    return render_template("deneme.html",orders = orders,borsalar = borsalar, marketler = marketler)
 
 @app.route("/aktif")
 def aktifEmirler():
     
-    emirler =  Todo.query.all()
+    emirler =  order.query.all()
     aktif_emirler =[]
     for emir in emirler:
         if emir.STATUS in ("Alim_emri_verildi" ,"ikincil_alim_emri_verildi", "Satim_emri_verildi", "ikincil_satim_emri_verildi"): 
             aktif_emirler.append(emir)
 
-    return render_template("aktif.html",todos = aktif_emirler)
+    return render_template("aktif.html",orders = aktif_emirler)
 
 @app.route("/tum_emirler")
 def tumEmirler():
     
-    emirler =  Todo.query.all()
+    emirler =  order.query.all()
     tum_emirler =[]
     for emir in emirler:
         if emir.STATUS in ("Alim_emri_verildi"): 
@@ -96,65 +96,65 @@ def tumEmirler():
     panda_emirler['NUMARA'] = np.arange(len(panda_emirler))                 # numara sutunu ekledi(pandas). dataframe uzunlugunda sirali sayi ekledi(numpy)
     tum_emirler = panda_emirler.to_dict('records')                          # dataframe i tekrar list of dict yapti. 'index' parametresi index numarasi ekliyor
 
-    return render_template("tum_emirler.html",todos = tum_emirler)
+    return render_template("tum_emirler.html",orders = tum_emirler)
 
 @app.route("/durum")
 def finansalDurum():
     
-    emirler =  Todo.query.all()
+    emirler =  order.query.all()
     aktif_emirler =[]
     for emir in emirler:
         if emir.STATUS in ("Alim_emri_verildi" ,"ikincil_alim_emri_verildi", "Satim_emri_verildi", "ikincil_satim_emri_verildi"): 
             aktif_emirler.append(emir)
 
-    return render_template("durum.html",todos = aktif_emirler)
+    return render_template("durum.html",orders = aktif_emirler)
 
 @app.route("/add", methods=["POST"])
-def addTodo():
+def addorder():
     title = request.form.get("title")
     content = request.form.get("content")
 
-    newTodo = Todo(title = title , content = content, complate = False)
-    db.session.add(newTodo)         #flask-sqalcemy tutoriala bak
+    neworder = order(title = title , content = content, complate = False)
+    db.session.add(neworder)         #flask-sqalcemy tutoriala bak
     db.session.commit()
 
     return redirect(url_for("index"))       # islem bitince donecegi sayfa
 
 @app.route("/complate/<string:id>")
-def completeTodo(id):
-    todo = Todo.query.filter_by(NUMBER=id).first()      #veriyi alip bir degiskene atadi
+def completeorder(id):
+    order = order.query.filter_by(NUMBER=id).first()      #veriyi alip bir degiskene atadi
 
-    if (todo.complate ==False):
-        todo.complate =True
+    if (order.complate ==False):
+        order.complate =True
     else:
-        todo.complate = False
+        order.complate = False
 
     db.session.commit()
     return redirect(url_for("index"))
 
 @app.route("/sil/<string:id>")
-def deleteTodo(id):
-    todo = Todo.query.filter_by(NUMBER=id).first() 
-    db.session.delete(todo)
+def deleteorder(id):
+    order = order.query.filter_by(NUMBER=id).first() 
+    db.session.delete(order)
     db.session.commit()
     return redirect(url_for("index"))
 
 
 @app.route("/detay/<string:id>")
-def detailTodo(id):
-    todo = Todo.query.filter_by(NUMBER=id).first() 
+def detailorder(id):
+    order = order.query.filter_by(NUMBER=id).first() 
 
-    return render_template("detail.html", todo = todo)
+    return render_template("detail.html", order = order)
 
 """
-class Todo(db.Model):
+class order(db.Model):
     id = db.Column(db.Integer, primary_key= True)
     title = db.Column(db.String(80))
     content = db.Column(db.Text)
     complate = db.Column(db.Boolean)
 """
 
-class Todo(db.Model):
+class order(db.Model):
     __table__ = db.Model.metadata.tables['Sirali_Emirler']
 """
     def __repr__(self):

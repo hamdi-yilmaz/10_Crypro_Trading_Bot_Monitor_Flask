@@ -45,7 +45,7 @@
     <nav class="col-xs-3 bs-docs-sidebar">
         <ul id="sidebar" class="nav nav-stacked">
 
-        {% for group in todos|groupby('BORSA') %}
+        {% for group in orders|groupby('BORSA') %}
         <li>
           <a href="#{{ group.grouper }}">{{ group.grouper }}</a>
           <ul class="nav nav-stacked">
@@ -68,7 +68,7 @@
     <!--Main Content -->
     <div class="col-xs-9">
         
-        {% for group in todos|groupby('BORSA') %}
+        {% for group in orders|groupby('BORSA') %}
                 
         <section id="{{ group.grouper }}" class="group">
                 <h3>{{ group.grouper }}</h3>

@@ -1,5 +1,5 @@
 
-    {% for group in todos|groupby('BORSA') %}
+    {% for group in orders|groupby('BORSA') %}
     <li>
         <a href="#{{ group.grouper }}">{{ group.grouper }}</a>
         <ul class="nav nav-stacked"></ul>
