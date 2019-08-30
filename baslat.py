@@ -100,14 +100,15 @@ def tumEmirler():
 
 @app.route("/durum")
 def finansalDurum():
-    
-    emirler =  order.query.all()
-    aktif_emirler =[]
-    for emir in emirler:
-        if emir.STATUS in ("Alim_emri_verildi" ,"ikincil_alim_emri_verildi", "Satim_emri_verildi", "ikincil_satim_emri_verildi"): 
-            aktif_emirler.append(emir)
+    bittrex_hesap = hesap.query.filter_by(BORSA="Bittrex").first()
 
-    return render_template("durum.html",orders = aktif_emirler)
+    from bittrex.bittrex import Bittrex
+    my_bittrex = Bittrex(bittrex_hesap.KEY,
+                     bittrex_hesap.SECRET)
+    available_btc = my_bittrex.get_balance('BTC')['result']['Available']
+    bittrex_cuzdan = my_bittrex.get_balances()
+
+    return render_template("durum.html",bittrex_hesap = bittrex_hesap, kullanilabilir = available_btc, bittrex_cuzdan=bittrex_cuzdan['result'])
 
 
 """
@@ -163,7 +164,8 @@ class order(db.Model):
     def __repr__(self):
         return self.DISTRICT
 """
-
+class hesap(db.Model):
+    __table__= db.Model.metadata.tables['Hesaplar']
 
 """
 class User(db.Model):

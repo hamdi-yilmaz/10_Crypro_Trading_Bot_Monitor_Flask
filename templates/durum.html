@@ -1,7 +1,37 @@
 {% include 'header.html' %}
-<div class="row">
-    
-    
+<div class="row" align="center">
+    {{bittrex_hesap.NUMBER}}
+    {{bittrex_hesap.BORSA}}
+    {{bittrex_hesap.KEY}}
+    {{bittrex_hesap.SECRET}}
+    <br>
+    {{kullanilabilir}}
+    <br>
+    {{bittrex_cuzdan}}
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Currency</th>
+                <th scope="col">Available</th>
+                <th scope="col">Balance</th>
+                <th scope="col">Pending</th>
+                <th scope="col">CryptoAddress</th>         
+            </tr>
+        </thead>
+    <tbody>
+    {% for satir in bittrex_cuzdan %}
+    <tr>
+      <th scope="row">{{satir.Currency }}</th>
+      <td>{{satir.Available}}</td>
+      <td>{{satir.Balance}}</td>
+      <td>{{satir.Pending}}</td>
+      <td>{{satir.CryptoAddress}}</td>
+     
+    </tr>
+    {% endfor %}
+  </tbody>
+  </table>
 </div>
 {% include 'footer.html' %}
 
