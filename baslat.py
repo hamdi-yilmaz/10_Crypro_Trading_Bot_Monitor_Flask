@@ -109,6 +109,8 @@ def finansalDurum():
 
     return render_template("durum.html",orders = aktif_emirler)
 
+
+"""
 @app.route("/add", methods=["POST"])
 def addorder():
     title = request.form.get("title")
@@ -119,10 +121,11 @@ def addorder():
     db.session.commit()
 
     return redirect(url_for("index"))       # islem bitince donecegi sayfa
+"""
 
 @app.route("/complate/<string:id>")
 def completeorder(id):
-    order = order.query.filter_by(NUMBER=id).first()      #veriyi alip bir degiskene atadi
+    order = order.query.filter_by(NUMBER=id).first()      #veriyi alip bir degiskene atadi     # degisken ismi degisecek
 
     if (order.complate ==False):
         order.complate =True
@@ -134,7 +137,7 @@ def completeorder(id):
 
 @app.route("/sil/<string:id>")
 def deleteorder(id):
-    order = order.query.filter_by(NUMBER=id).first() 
+    order = order.query.filter_by(NUMBER=id).first()        # degisken ismi degisecek
     db.session.delete(order)
     db.session.commit()
     return redirect(url_for("index"))
