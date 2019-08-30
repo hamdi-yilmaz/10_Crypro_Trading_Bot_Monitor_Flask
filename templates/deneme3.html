@@ -1,0 +1,139 @@
+
+    {% for group in todos|groupby('BORSA') %}
+    <li>
+        <a href="#{{ group.grouper }}">{{ group.grouper }}</a>
+        <ul class="nav nav-stacked"></ul>
+        {% for altgroup in group.list|groupby('MARKET') %}
+
+            <li><a href="#{{ altgroup.grouper }}">{{ altgroup.grouper }}</a>
+                <ul class="nav nav-stacked">
+                    <li><a href="#{{ altgroup.grouper }}_buy">Alım</a></li>
+                    <li><a href="#{{ altgroup.grouper }}_sell">Satım</a></li>
+                </ul>
+            </li>
+             
+        {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+
+
+
+    <li>
+            <a href="#GroupA">Group A</a>
+            <ul class="nav nav-stacked">
+              <li><a href="#GroupASub1">Sub-Group 1</a>
+                <ul class="nav nav-stacked">
+                  <li><a href="#GroupASubSub1">SUBSub-Group 1</a></li>
+                  <li><a href="#GroupASubSub2">SUbSub-Group 2</a></li>
+                </ul>
+              
+              </li>
+                <li><a href="#GroupASub2">Sub-Group 2</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#GroupB">Group B</a>
+            <ul class="nav nav-stacked">
+                <li><a href="#GroupBSub1">Sub-Group 1</a></li>
+                <li><a href="#GroupBSub2">Sub-Group 2</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#GroupC">Group C</a>
+            <ul class="nav nav-stacked">
+                <li><a href="#GroupCSub1">Sub-Group 1</a></li>
+                <li><a href="#GroupCSub2">Sub-Group 2</a></li>
+            </ul>
+        </li>
+
+
+        <li>
+                <a href="#Bittrex">Bittrex</a>
+                <ul class="nav nav-stacked">
+                      <li><a href="#BTC-doge">BTC-doge</a>
+                          <ul class="nav nav-stacked">
+                              <li><a href="#BTC-doge_buy">Alım</a></li>
+                              <li><a href="#BTC-doge_sell">Satım</a></li>
+                          </ul>
+                      </li>
+                      <li><a href="#BTC-eth">BTC-eth</a>
+                          <ul class="nav nav-stacked">
+                              <li><a href="#BTC-eth_buy">Alım</a></li>
+                              <li><a href="#BTC-eth_sell">Satım</a></li>
+                          </ul>
+                      </li>
+                      
+                  
+      
+                      <li><a href="#BTC-rvn">BTC-rvn</a>
+                          <ul class="nav nav-stacked">
+                              <li><a href="#BTC-rvn_buy">Alım</a></li>
+                              <li><a href="#BTC-rvn_sell">Satım</a></li>
+                          </ul>
+                      </li>
+                      
+                  
+      
+                      <li><a href="#BTC-sc">BTC-sc</a>
+                          <ul class="nav nav-stacked">
+                              <li><a href="#BTC-sc_buy">Alım</a></li>
+                              <li><a href="#BTC-sc_sell">Satım</a></li>
+                          </ul>
+                      </li>
+                      
+                  
+      
+                      <li><a href="#BTC-solve">BTC-solve</a>
+                          <ul class="nav nav-stacked">
+                              <li><a href="#BTC-solve_buy">Alım</a></li>
+                              <li><a href="#BTC-solve_sell">Satım</a></li>
+                          </ul>
+                      </li>
+                      
+                  
+      
+                      <li><a href="#BTC-xrp">BTC-xrp</a>
+                          <ul class="nav nav-stacked">
+                              <li><a href="#BTC-xrp_buy">Alım</a></li>
+                              <li><a href="#BTC-xrp_sell">Satım</a></li>
+                          </ul>
+                      </li>
+                      
+                  
+      
+                      <li><a href="#USDT-btc">USDT-btc</a>
+                          <ul class="nav nav-stacked">
+                              <li><a href="#USDT-btc_buy">Alım</a></li>
+                              <li><a href="#USDT-btc_sell">Satım</a></li>
+                          </ul>
+                      </li>
+                      
+                  
+      
+                      <li><a href="#usdt-btc">usdt-btc</a>
+                          <ul class="nav nav-stacked">
+                              <li><a href="#usdt-btc_buy">Alım</a></li>
+                              <li><a href="#usdt-btc_sell">Satım</a></li>
+                          </ul>
+                      </li>
+                      
+                  
+                </ul>
+              </li>
+              
+              <li>
+                <a href="#Poloniex">Poloniex</a>
+                <ul class="nav nav-stacked">
+                  
+      
+                      <li><a href="#BTC-doge">BTC-doge</a>
+                          <ul class="nav nav-stacked">
+                              <li><a href="#BTC-doge_buy">Alım</a></li>
+                              <li><a href="#BTC-doge_sell">Satım</a></li>
+                          </ul>
+                      </li>
+                      
+                  
+                </ul>
+              </li>

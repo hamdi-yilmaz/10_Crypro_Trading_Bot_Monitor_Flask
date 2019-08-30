@@ -1,0 +1,67 @@
+
+
+<section id="GroupA" class="group">
+    <h3>Group A</h3>
+        <div id="GroupASub1" class="subgroup clearfix">
+            <h4>Group A Sub 1</h4>
+          <hr>
+            <div class="clearfix">
+            <div id="GroupASubSub1" class="subsubgroup">
+                <h4>Group A SubSub 1</h4>
+            </div>
+            <div id="GroupASubSub2" class="subsubgroup">
+                <h4>Group A SubSub 2</h4>
+            </div>
+          </div>
+        </div>
+</section>
+    
+
+
+{% for group in todos|groupby('BORSA') %}
+<section id="{{ group.grouper }}" class="group">
+        <h3>{{ group.grouper }}</h3>
+    
+      
+    {% for altgroup in group.list|groupby('MARKET') %}
+    <div id="{{ altgroup.grouper }}" class="subgroup clearfix">
+    <h4>{{ altgroup.grouper }}</h4>
+    <hr>
+        <div class="clearfix">   
+        {% for person in altgroup.list %}
+            <div id="{{ altgroup.grouper }}_buy" class="subsubgroup">
+                <h4>Alım</h4>
+                <p>{{ person.MARKET }} {{ person.TIME }}</p>
+            </div>
+
+            <div id="{{ altgroup.grouper }}_sell" class="subsubgroup">
+                <h4>Satım</h4>
+                <p>{{ person.MARKET }} {{ person.TIME }}</p>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endfor %}
+
+
+
+
+
+<ul>
+        {% for group in todos|groupby('BORSA') %}
+            <li>{{ group.grouper }}<ul>
+      
+            {% for altgroup in group.list|groupby('MARKET') %}
+      
+            <li>{{ altgroup.grouper }}<ul>
+                {% for person in altgroup.list %}
+                    <li>{{ person.MARKET }} {{ person.TIME }}</li>
+                {% endfor %}</ul></li>
+      
+            {% endfor %}</ul></li>
+      
+        {% endfor %}
+        </ul>
+      
