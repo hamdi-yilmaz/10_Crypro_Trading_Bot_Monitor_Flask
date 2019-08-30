@@ -1,0 +1,67 @@
+
+{% include 'header.html' %}
+<div align="center">
+    
+    <!--Main Content -->
+    <div>
+        
+        <h3>Yeni Emir</h3>
+        <hr>
+
+        <form action="/add" method="post">
+            
+                <div class="form-group">
+                  <label for="formGroupExampleInput">order Başlığı</label>
+                  <input type="text" name ="title" class="form-control" id="formGroupExampleInput" placeholder="Başlığı giriniz">
+                </div>
+                <div class="form-group">
+                  <label for="formGroupExampleInput2">order İçeriği</label>
+                  <textarea type="text" name="content" class="form-control" id="formGroupExampleInput2" placeholder="İçeriği giriniz"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Ekle</button>
+        </form><br>
+        {% if orders == []  %}
+        <div class="alert alert-primary" role="alert">
+          Veri yok
+        </div>
+        {% else %}
+
+
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">NUMBER</th>
+              <th scope="col">Market</th>
+              <th scope="col">Durum</th>
+              <th scope="col">Alış Fiyatı</th>
+              <th scope="col">Satış Fiyatı</th>
+              <th scope="col">Tamamla/th>
+              <th scope="col">Sil</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+            <tr>
+              <th scope="row">{{order.NUMBER}}</th>
+              <td><a href="/detay/{{order.NUMBER}}">{{order.MARKET}}</a></td>
+              <td>{{order.STATUS}}</td>
+              <td>{{order.BUY_PRICE}}</td>
+              <td>{{order.SELL_PRICE}}</td>
+              <td><a href="/complate/{{order.NUMBER}}" class="btn btn-danger">Tamamla</a></td>
+              <td><a href="/sil/{{order.NUMBER}}" class="btn btn-danger">Sil</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endif %}
+
+
+    </div>
+</div>
+
+{% include 'footer.html' %}
+
+
+
+

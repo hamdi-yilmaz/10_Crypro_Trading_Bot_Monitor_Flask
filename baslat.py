@@ -26,6 +26,11 @@ def index():
 
     return render_template("index.html",orders = orders)
 
+@app.route("/yeni_emir")
+def yeni_emir():
+
+    return render_template("yeni_emir.html")
+
 @app.route("/deneme")
 def deneme():
     
@@ -142,9 +147,9 @@ def deleteorder(id):
 
 @app.route("/detay/<string:id>")
 def detailorder(id):
-    order = order.query.filter_by(NUMBER=id).first() 
+    order1 = order.query.filter_by(NUMBER=id).first() 
 
-    return render_template("detail.html", order = order)
+    return render_template("detail.html", order = order1)
 
 """
 class order(db.Model):
