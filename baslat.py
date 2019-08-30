@@ -12,9 +12,6 @@ db.Model.metadata.reflect(db.engine)
 def index():
     
     orders =  order.query.all()
-    
-    
-
     # order.query.group_by(order.MARKET).all()                   # veriyi gruplamak icin
     # order.query.all()[1].BORSA                                # birinci verinin Borsa sutunu verisi
 
@@ -23,13 +20,13 @@ def index():
     {"id":1,"title":"Deneme","content":"sadsd","complate" :0}              # list of dictionary
     ]
     """
-
     return render_template("index.html",orders = orders)
+
 
 @app.route("/yeni_emir")
 def yeni_emir():
-
     return render_template("yeni_emir.html")
+
 
 @app.route("/deneme")
 def deneme():
@@ -47,8 +44,6 @@ def deneme():
     for market in market_grup:
         marketler.append(market.MARKET)
 
-        
-    
     return render_template("deneme.html",orders = orders,borsalar = borsalar, marketler = marketler)
 
 @app.route("/aktif")
